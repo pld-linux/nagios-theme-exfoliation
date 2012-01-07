@@ -1,7 +1,7 @@
 Summary:	Exfoliation Nagios theme
 Name:		nagios-theme-exfoliation
 Version:	0.7
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/WWW
 #Source0:	http://lancet.mit.edu/mwall/projects/nagios/exfoliation-%{version}.tgz
@@ -10,12 +10,13 @@ Source0:	http://downloads.sourceforge.net/nagios/nagios-3.3.1.tar.gz
 URL:		http://lancet.mit.edu/mwall/projects/nagios/exfoliation.html
 BuildRequires:	sed >= 4.0
 Requires:	nagios-cgi >= 2.0-0.b3.31
+Requires:	webserver(php)
 Provides:	nagios-theme
 Obsoletes:	nagios-theme
+#Obsoletes:	nagios-theme-default < 3.3.1-1.4
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_sysconfdir	/etc/webapps/nagios
 %define		htmldir		/usr/share/nagios
 
 %description
@@ -31,8 +32,8 @@ mv nagios/html .
 	s#@cgiurl@#/nagios/cgi-bin#
 	s#@localstatedir@#/var/lib/nagios#
 
-	/cgi_config_file/  s#@sysconfdir@#/etc/webapps/nagios#
-	/main_config_file/ s#@sysconfdir@#/etc/nagios#
+	/cgi_config_file/  s#@sysconfdir@#/''etc/webapps/nagios#
+	/main_config_file/ s#@sysconfdir@#/''etc/nagios#
 
 ' html/config.inc.php.in > html/config.inc.php
 
