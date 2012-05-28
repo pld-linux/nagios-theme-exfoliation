@@ -1,15 +1,16 @@
 Summary:	Exfoliation Nagios theme
 Name:		nagios-theme-exfoliation
-Version:	0.7
-Release:	2
+Version:	3.4.1
+Release:	1
 License:	GPL v2+
 Group:		Applications/WWW
-#Source0:	http://lancet.mit.edu/mwall/projects/nagios/exfoliation-%{version}.tgz
-Source0:	http://downloads.sourceforge.net/nagios/nagios-3.3.1.tar.gz
-# Source0-md5:	c935354ce0d78a63bfabc3055fa77ad5
+Source0:	http://downloads.sourceforge.net/nagios/nagios-%{version}.tar.gz
+# Source0-md5:	2fa8acfb2a92b1bf8d173a855832de1f
+Patch0:		system-jquery.patch
+Patch1:		system-magpierss.patch
 URL:		http://lancet.mit.edu/mwall/projects/nagios/exfoliation.html
 BuildRequires:	sed >= 4.0
-Requires:	nagios-cgi >= 2.0-0.b3.31
+Requires:	nagios-cgi >= 3.4.1-0.8
 Requires:	webserver(php)
 Provides:	nagios-theme
 Obsoletes:	nagios-theme
@@ -24,6 +25,10 @@ Exfoliation is a simple makeover for the Nagios Core web interface.
 
 %prep
 %setup -qc
+cd nagios
+%patch0 -p1
+%patch1 -p1
+cd ..
 mv nagios/contrib/exfoliation/* .
 # need some files from nagios tarball the way themes are made
 mv nagios/html .
@@ -41,7 +46,7 @@ mv nagios/html .
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{htmldir}
 
-# base files,. not present in the exfoliation
+# base files, not present in the exfoliation
 cp -a html/*.php html/includes $RPM_BUILD_ROOT%{htmldir}
 
 # copy theme files
