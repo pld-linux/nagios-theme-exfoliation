@@ -1,13 +1,14 @@
 Summary:	Exfoliation Nagios theme
 Name:		nagios-theme-exfoliation
 Version:	4.5.3
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		Applications/WWW
 # https://www.nagios.org/downloads/nagios-core/thanks/?product_download=nagioscore-source
 Source0:	https://assets.nagios.com/downloads/nagioscore/releases/nagios-%{version}.tar.gz
 # Source0-md5:	b77fd2fb656245dd0097c8e7b1310d3e
 Patch0:		system-jquery.patch
+Patch1:		remove-information-leak.patch
 URL:		http://lancet.mit.edu/mwall/projects/nagios/exfoliation.html
 BuildRequires:	sed >= 4.0
 Requires:	jquery >= 3.7.1
@@ -28,6 +29,7 @@ Exfoliation is a simple makeover for the Nagios Core web interface.
 %setup -qc
 cd nagios-%{version}
 %patch0 -p1
+%patch1 -p1
 cd ..
 mv nagios-%{version}/contrib/exfoliation/* .
 # need some files from nagios tarball the way themes are made
