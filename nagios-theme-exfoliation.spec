@@ -1,7 +1,7 @@
 Summary:	Exfoliation Nagios theme
 Name:		nagios-theme-exfoliation
 Version:	4.5.3
-Release:	4
+Release:	5
 License:	GPL v2+
 Group:		Applications/WWW
 # https://www.nagios.org/downloads/nagios-core/thanks/?product_download=nagioscore-source
