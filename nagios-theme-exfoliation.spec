@@ -1,7 +1,7 @@
 Summary:	Exfoliation Nagios theme
 Name:		nagios-theme-exfoliation
 Version:	4.5.3
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Applications/WWW
 # https://www.nagios.org/downloads/nagios-core/thanks/?product_download=nagioscore-source
@@ -49,13 +49,14 @@ install -d $RPM_BUILD_ROOT%{htmldir}
 # keep synced with install-exfoliation Makefile.in target
 
 # base files, not present in the exfoliation
-cp -a html/*.php html/includes $RPM_BUILD_ROOT%{htmldir}
+cp -a html/*.php html/includes html/images html/stylesheets $RPM_BUILD_ROOT%{htmldir}
 
 # @COREWINDOW@ doesn't need to be expanded here for us
 cp -a html/index.php.in $RPM_BUILD_ROOT%{htmldir}/index.php
 
-# copy theme files
-cp -a images stylesheets $RPM_BUILD_ROOT%{htmldir}
+# overwrite changed theme files since some files from base are still needed (ex nag_funcs.css)
+cp -a images/* $RPM_BUILD_ROOT%{htmldir}/images/
+cp -a stylesheets/* $RPM_BUILD_ROOT%{htmldir}/stylesheets/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
