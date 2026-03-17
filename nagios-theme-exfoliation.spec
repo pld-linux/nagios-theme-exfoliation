@@ -1,12 +1,12 @@
 Summary:	Exfoliation Nagios theme
 Name:		nagios-theme-exfoliation
-Version:	4.5.9
+Version:	4.5.11
 Release:	1
 License:	GPL v2+
 Group:		Applications/WWW
 # https://www.nagios.org/downloads/nagios-core/thanks/?product_download=nagioscore-source
 Source0:	https://assets.nagios.com/downloads/nagioscore/releases/nagios-%{version}.tar.gz
-# Source0-md5:	dea21ad245e301fb05d3e8408499e001
+# Source0-md5:	3efce6c0863f349857e6edb2cd27ff40
 Patch0:		system-jquery.patch
 Patch1:		remove-information-leak.patch
 URL:		http://lancet.mit.edu/mwall/projects/nagios/exfoliation.html
@@ -59,6 +59,7 @@ cp -a html/index.php.in $RPM_BUILD_ROOT%{htmldir}/index.php
 # overwrite changed theme files since some files from base are still needed (ex nag_funcs.css)
 cp -a images/* $RPM_BUILD_ROOT%{htmldir}/images/
 cp -a stylesheets/* $RPM_BUILD_ROOT%{htmldir}/stylesheets/
+cp -a fonts $RPM_BUILD_ROOT%{htmldir}/fonts
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -70,3 +71,4 @@ rm -rf $RPM_BUILD_ROOT
 %{htmldir}/images/*
 %exclude %{htmldir}/images/favicon.ico
 %{htmldir}/stylesheets/*
+%{htmldir}/fonts
